@@ -14,7 +14,7 @@ class Api {
 
   getInitialCards() {
     return fetch(`${this.baseUrl}/cards`, { headers: this.headers })
-      .then(res => this._checkApiResponse(res));
+      .then(this._checkApiResponse);
   }
 
   postCard(name, link) {
