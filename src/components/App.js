@@ -1,6 +1,3 @@
-//import logo from './images/svg/logo.svg';
-// import './App.css';
-
 import React from 'react';
 
 import Header from './Header';
