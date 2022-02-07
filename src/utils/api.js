@@ -37,21 +37,37 @@ class Api {
       .then(res => this._checkApiResponse(res));
   }
 
-  addLike(id) {
-    return fetch(`${this.baseUrl}/cards/${id}/likes`, {
-      method: 'PUT',
-      headers: this.headers
-    })
-    .then(res => this._checkApiResponse(res));
+  changeLikeCardStatus(id, isLiked) {
+    if(isLiked) {
+      return fetch(`${this.baseUrl}/cards/${id}/likes`, {
+        method: 'PUT',
+        headers: this.headers
+      })
+      .then(res => this._checkApiResponse(res));
+    } else {
+      return fetch(`${this.baseUrl}/cards/${id}/likes`, {
+        method: 'DELETE',
+        headers: this.headers
+      })
+      .then(res => this._checkApiResponse(res));
+    }
   }
 
-  delLike(id) {
-    return fetch(`${this.baseUrl}/cards/${id}/likes`, {
-      method: 'DELETE',
-      headers: this.headers
-    })
-    .then(res => this._checkApiResponse(res));
-  }
+  // addLike(id) {
+  //   return fetch(`${this.baseUrl}/cards/${id}/likes`, {
+  //     method: 'PUT',
+  //     headers: this.headers
+  //   })
+  //   .then(res => this._checkApiResponse(res));
+  // }
+
+  // delLike(id) {
+  //   return fetch(`${this.baseUrl}/cards/${id}/likes`, {
+  //     method: 'DELETE',
+  //     headers: this.headers
+  //   })
+  //   .then(res => this._checkApiResponse(res));
+  // }
 
   changeAvatar(link) {
     return fetch(`${this.baseUrl}/users/me/avatar`, {
