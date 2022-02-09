@@ -85,40 +85,39 @@ function App() {
     const isLiked = card.likes.some(i => i._id === currentUser._id);
     
     // Отправляем запрос в API и получаем обновлённые данные карточки
-    api.changeLikeCardStatus(card._id, !isLiked).then((newCard) => {
-        setCards((state) => state.map((c) => c._id === card._id ? newCard : c));
-    });
+    api.changeLikeCardStatus(card._id, !isLiked)
+      .then((newCard) => {
+          setCards((state) => state.map((c) => c._id === card._id ? newCard : c));
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   } 
 
   function handleCardDelete(id) {
-    api.deleteCard(id).then(() => {
-      setCards(cards.filter(card => card._id !== id));
-    });
+    api.deleteCard(id)
+      .then(() => {
+        setCards(cards.filter(card => card._id !== id));
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   }
 
   function handleAddPlaceSubmit(card) {
-    api.postCard(card.name, card.link).then((newCard) => {
-      setCards([newCard, ...cards]);
-      closeAllPopups();
-    });
-  }
-
-  function handleChangeTheme() {
-    // Add / Remove Mod Classes
-    document.querySelector('.root').classList.toggle('root_theme_light');
-    document.querySelector('.header__logo').classList.toggle('header__logo_theme_light');
-    document.querySelector('.profile__edit-button').classList.toggle('profile__edit-button_theme_light');
-
-    // Select All Actual Place Blocks
-    const placeElement = document.querySelectorAll('.place');
-    placeElement.forEach(element => {
-      element.classList.toggle('place_theme_light');
-    });
+    api.postCard(card.name, card.link)
+      .then((newCard) => {
+        setCards([newCard, ...cards]);
+        closeAllPopups();
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   }
 
   return (
     <CurrentUserContext.Provider value={currentUser}>
-      <Header changeTheme={handleChangeTheme} />
+      <Header />
       <Main
         onCardClick={handleCardClick}
         onEditAvatar={handleEditAvatarClick}

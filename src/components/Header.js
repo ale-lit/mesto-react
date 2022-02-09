@@ -1,7 +1,7 @@
-function Header({changeTheme}) {
+function Header() {
   return (
     <header className="header root__container">
-      <div className="header__logo" onClick={changeTheme} title="Переключить стиль"></div>
+      <div className="header__logo"></div>
     </header>
   );
 }
