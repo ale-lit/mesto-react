@@ -36,7 +36,6 @@ return (
         className="popup__input-error"
       ></span>
     </div>
-    <input type="submit" value="Сохранить" className="popup__save-button" />
   </PopupWithForm>
   );
 }

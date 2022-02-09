@@ -14,16 +14,6 @@ import {api} from '../utils/api.js';
 function App() {
   const [currentUser, setCurrentUser] = useState({});
 
-  useEffect(() => {
-    api.getUserInfo()
-      .then((user) => {
-        setCurrentUser(user);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  }, []);
-
   const [isEditAvatarPopupOpen, setIsEditAvatarPopupOpen] =
     useState(false);
   const [isEditProfilePopupOpen, setIsEditProfilePopupOpen] =
@@ -81,8 +71,9 @@ function App() {
 
   useEffect(() => {
     api.getAllNeededData()
-      .then(([cards]) => {
-        setCards(cards);
+      .then(([cards, user]) => {
+        setCurrentUser(user);
+        setCards(cards);        
       })
       .catch((err) => {
         console.log(err);
@@ -112,9 +103,22 @@ function App() {
     });
   }
 
+  function handleChangeTheme() {
+    // Add / Remove Mod Classes
+    document.querySelector('.root').classList.toggle('root_theme_light');
+    document.querySelector('.header__logo').classList.toggle('header__logo_theme_light');
+    document.querySelector('.profile__edit-button').classList.toggle('profile__edit-button_theme_light');
+
+    // Select All Actual Place Blocks
+    const placeElement = document.querySelectorAll('.place');
+    placeElement.forEach(element => {
+      element.classList.toggle('place_theme_light');
+    });
+  }
+
   return (
     <CurrentUserContext.Provider value={currentUser}>
-      <Header />
+      <Header changeTheme={handleChangeTheme} />
       <Main
         onCardClick={handleCardClick}
         onEditAvatar={handleEditAvatarClick}

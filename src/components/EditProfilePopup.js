@@ -22,7 +22,7 @@ function EditProfilePopup({ onClose, isOpen, onUpdateUser }) {
   useEffect(() => {
     setName(currentUser.name);
     setDescription(currentUser.about);
-  }, [currentUser]);
+  }, [currentUser, isOpen]);
 
   function handleSubmit(e) {
     // Запрещаем браузеру переходить по адресу формы
@@ -73,7 +73,6 @@ function EditProfilePopup({ onClose, isOpen, onUpdateUser }) {
         />
         <span id="input-about-error" className="popup__input-error"></span>
       </div>
-      <input type="submit" value="Сохранить" className="popup__save-button" />
     </PopupWithForm>
   );
 }
