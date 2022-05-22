@@ -4,7 +4,7 @@
 
 ▼ ▼ ▼
 ------------- |
-<a href="https://ale-lit.github.io/mesto/"><img src="https://github.com/ale-lit/ale-lit/blob/main/screens/mesto.jpg" alt="Место"></a>
+<a href="https://ale-lit.ru/mesto-react/"><img src="https://github.com/ale-lit/ale-lit/blob/main/screens/mesto.jpg" alt="Место"></a>
 | <div align="center">**https://ale-lit.ru/mesto-react/**</div> |
 
 </div>
